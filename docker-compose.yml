@@ -1,3 +1,5 @@
+# COMMAND TO RUN 
+# docker run --rm --network host -v "$(pwd):/usr/src" sonarsource/sonar-scanner-cli -D sonar.projectKey=${SONARQUBE_PROJECT_KEY} -D sonar.sources=/usr/src  -D sonar.host.url=${SONARQUBE_URL} -D sonar.login=${SONARQUBE_APIKEY} 
 services:
   sonarqube:
     image: sonarqube:latest
