@@ -5,7 +5,7 @@ export default function RegexTester() {
   const [match, setMatch] = useState(false);
 
   // Evil regex prone to ReDoS attack: nested quantifiers (a+)+
-  const evilRegex = /^(a+)+$/;
+  const evilRegex = /^a+$/;
 
   const handleChange = (e) => {
     const val = e.target.value;
