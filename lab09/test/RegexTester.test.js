@@ -1,7 +1,7 @@
-const React = require('react');
-const { render, screen, fireEvent } = require('@testing-library/react');
-const { expect } = require('chai');
-const RegexTester = require('../src/RegexTester');
+import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { expect } from 'chai';
+import RegexTester from '../src/RegexTester';
 
 describe('RegexTester Component', () => {
   it('renders input box', () => {
