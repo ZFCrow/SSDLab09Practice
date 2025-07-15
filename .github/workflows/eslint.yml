@@ -2,6 +2,11 @@ name: ESLint Code Analysis
 
 on: [push, pull_request]
 
+permissions:
+  contents: read
+  security-events: write
+  actions: read
+  
 jobs:
   eslint:
     runs-on: ubuntu-latest
