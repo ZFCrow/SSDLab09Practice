@@ -2,6 +2,12 @@ import { Builder, By, until } from "selenium-webdriver";
 import assert from "assert"; 
 
 
+//! THE DOCKER COMMAND TO BOOT UP THE SELENIUM SERVER 
+//! docker run -d -p 4444:4444 -p 7900:7900 --name selenium-server --shm-size=2g selenium/standalone-chrome:latest 
+//! boot up the web server js (ensure that vite server allows the docker.internal host as well as npm run dev -- --host)
+//! cd into the test directory and start the script with 
+//! node Selenium-test.js 
+
 // get the argument (default to 'local' if not provided) 
 const environment = process.argv[2] || "local"; 
 
@@ -15,7 +21,8 @@ const seleniumURL = environment === "github"
 
 const serverUrl = environment === "github" 
     ? 'http://server:5173' // Remote server in Docker/CI
-    : 'http://localhost:5173'; // Local server
+    //: 'http://localhost:5173'; // Local server if not using selenium in docker 
+    : 'http://host.docker.internal:5173'; // Local server for Docker on Windows/Mac 
 
 console.log(`Running tests in '${environment}' environment`);
 console.log(`Selenium URL: ${seleniumURL}`);
@@ -35,7 +42,7 @@ async function runTests() {
             .build()
         : await new Builder() 
             .forBrowser("chrome")
-            // using local else .usingServer(seleniumURL)  
+            .usingServer(seleniumURL)  
             .build(); 
 
 
